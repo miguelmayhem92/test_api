@@ -10,8 +10,26 @@ templates = Jinja2Templates(directory="templates")
 class NameValues(BaseModel):
     Check : str = None
 
+@app.get("/")
+def index():
+    """Basic HTML response."""
+    body = (
+        "<html>"
+        "<body style='padding: 10px;'>"
+        "<h1>Welcome to my test API</h1>"
+        "<div>"
+        "Check the basic html template: <a href='/home'>here</a>"
+        "<div>"
+        "Check the basic html DataFrame: <a href='/displayDF'>here</a>"
+        "</div>"
+        "</body>"
+        "</html>"
+    )
+
+    return HTMLResponse(content=body)
+
 @app.get("/home", response_class = HTMLResponse)
-def home(request:Request):
+def home_html(request:Request):
     return templates.TemplateResponse("introduction.html", {"request": request})
 
 @app.get("/displayDF")
