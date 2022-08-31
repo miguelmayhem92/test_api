@@ -7,9 +7,6 @@ import pandas as pd
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-class NameValues(BaseModel):
-    Check : str = None
-
 @app.get("/")
 def index():
     """Basic HTML response."""
@@ -33,7 +30,7 @@ def home_html(request:Request):
     return templates.TemplateResponse("introduction.html", {"request": request})
 
 @app.get("/displayDF")
-async def handle_df(request: Request):
+def handle_df(request: Request):
     
     test_list = [
         ["Joe", 34, "Accounts", 10000], ["Jack", 34, "Chemistry", 20000]
