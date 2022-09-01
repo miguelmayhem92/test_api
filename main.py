@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Body, Request, Form
-from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import pandas as pd
@@ -7,7 +6,13 @@ import pandas as pd
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
+
 @app.get("/")
+def index():
+    return {'test':'test'}
+
+
+@app.get("/index")
 def index():
     """Basic HTML response."""
     body = (
